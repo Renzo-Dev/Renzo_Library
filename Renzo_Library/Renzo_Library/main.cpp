@@ -1,12 +1,11 @@
 #include "string.h"
 
-using namespace renzo;
+using namespace std;
+
 
 int main()
 {
-	string s("awdwad");
-
-	std::cout << renzo::strlen(s.c_str());
 	
+
 	return 0;
 }
