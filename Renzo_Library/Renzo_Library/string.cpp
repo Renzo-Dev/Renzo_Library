@@ -1,4 +1,6 @@
-﻿#include "string.h"
+﻿#include <cstdlib>
+#include <cstring>
+#include "RenzoLib.h"
 
 size_t renzo::strlen(const char* str)
 {
@@ -11,6 +13,19 @@ size_t renzo::strlen(const char* str)
 	}
 
 	return count;
+}
+
+
+renzo::string* renzo::string::operator=(const string& str)
+{
+	if(this->str_==nullptr)
+	{
+		free(str_);
+	}
+	this->lenght_ = str.lenght_;
+	this->str_ = static_cast<char*>(malloc(lenght_ + 1));
+	memcpy(this->str_, str.c_str() , (lenght_ + 1));
+	return this;
 }
 
 renzo::string::string(const char* str)
