@@ -16,7 +16,7 @@ size_t renzo::strlen(const char* str)
 }
 
 
-renzo::string* renzo::string::operator=(const string& str)
+renzo::string& renzo::string::operator=(const string& str)
 {
 	if(this->str_==nullptr)
 	{
@@ -25,7 +25,7 @@ renzo::string* renzo::string::operator=(const string& str)
 	this->lenght_ = str.lenght_;
 	this->str_ = static_cast<char*>(malloc(lenght_ + 1));
 	memcpy(this->str_, str.c_str() , (lenght_ + 1));
-	return this;
+	return *this;
 }
 
 renzo::string::string(const char* str)

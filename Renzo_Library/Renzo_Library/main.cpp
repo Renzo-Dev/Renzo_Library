@@ -19,8 +19,7 @@ int main()
 
 	e.push("wdad");
 
-	e.pop();
-
+	cout << e.empty();
 
 	return 0;
 }

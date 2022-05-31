@@ -3,6 +3,7 @@
 // namespace renzo
 
 
+#pragma once
 namespace renzo
 {
 	size_t strlen(const char* str);
@@ -17,7 +18,7 @@ namespace renzo
 		size_t lenght_ = 0;
 	public:
 
-		string* operator=(const string& obj);
+		string& operator=(const string& obj);
 		
 		string(const char* str);
 
@@ -52,15 +53,12 @@ namespace renzo
 		stack();
 
 		void push(T data);
+		void emplace(T&& data);
+		void emplace(T& data);
 		size_t size() const;
 		void pop();
-		bool empty() const;
+		constexpr auto empty() -> bool;
 		T top();
-		// push
-		// pop
-		// emplace
-		// empty
-		// size
 		// swap
 
 		~stack();
@@ -92,6 +90,16 @@ namespace renzo
 	}
 
 	template <typename T>
+	void stack<T>::emplace(T&& data)
+	{
+	}
+
+	template <typename T>
+	void stack<T>::emplace(T& data)
+	{
+	}
+
+	template <typename T>
 	size_t stack<T>::size() const
 	{
 		return this->size_;
@@ -110,7 +118,7 @@ namespace renzo
 	}
 
 	template <typename T>
-	bool stack<T>::empty() const
+	constexpr bool stack<T>::empty()
 	{
 		return 0 == size_;
 	}
