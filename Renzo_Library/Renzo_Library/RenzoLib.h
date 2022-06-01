@@ -1,7 +1,7 @@
 // RenzoLib
 // 
 // namespace renzo
-
+#include <iterator>
 
 #pragma once
 namespace renzo
@@ -18,6 +18,8 @@ namespace renzo
 		size_t lenght_ = 0;
 	public:
 
+		string();
+
 		string& operator=(const string& obj);
 		
 		string(const char* str);
@@ -29,6 +31,8 @@ namespace renzo
 
 #pragma endregion
 
+
+#pragma region MyStack
 	/**
 	 *  my class stack 
 	 */
@@ -52,13 +56,18 @@ namespace renzo
 		
 		stack();
 
-		void push(T data);
-		void emplace(T&& data);
-		void emplace(T& data);
+		void push(const T& data);
+
+		void push(T& data);
+
 		size_t size() const;
+
 		void pop();
+
 		constexpr auto empty() -> bool;
+
 		T top();
+
 		// swap
 
 		~stack();
@@ -80,7 +89,7 @@ namespace renzo
 	stack<T>::stack(): head(nullptr){}
 
 	template <typename T>
-	auto stack<T>::push(T data) -> void
+	void stack<T>::push(const T& data)
 	{
 		auto now = static_cast<Node*> (malloc(sizeof Node));
 		now->data = data;
@@ -90,13 +99,13 @@ namespace renzo
 	}
 
 	template <typename T>
-	void stack<T>::emplace(T&& data)
+	void stack<T>::push(T& data)
 	{
-	}
-
-	template <typename T>
-	void stack<T>::emplace(T& data)
-	{
+		auto now = static_cast<Node*> (malloc(sizeof Node));
+		now->data = data;
+		now->pNext = head;
+		head = now;
+		size_++;
 	}
 
 	template <typename T>
@@ -129,3 +138,4 @@ namespace renzo
 		return this->head->data;
 	}
 }
+#pragma endregion

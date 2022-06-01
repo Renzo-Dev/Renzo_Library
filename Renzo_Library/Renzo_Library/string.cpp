@@ -16,6 +16,9 @@ size_t renzo::strlen(const char* str)
 }
 
 
+renzo::string::string()
+= default;
+
 renzo::string& renzo::string::operator=(const string& str)
 {
 	if(this->str_==nullptr)
